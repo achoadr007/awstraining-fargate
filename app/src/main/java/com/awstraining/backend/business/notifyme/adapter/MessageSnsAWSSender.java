@@ -23,13 +23,14 @@ public class MessageSnsAWSSender implements MessageSender {
     //  2. Make sure that you created new value in parameter store with arn of sns topic.
     //  3. Inject parameter with @Value annotation through constructor.
     @Autowired
-    public MessageSnsAWSSender(AmazonSNS amazonSNS, @Value("{$notification.topicarn}") String topic) {
+    public MessageSnsAWSSender(AmazonSNS amazonSNS, @Value("${notification.topicarn}") String topic) {
         this.amazonSNS = amazonSNS;
         this.topicArn = topic;
     }
 
     @Override
     public void send(String text) {
+
         PublishRequest publishRequest = new PublishRequest(topicArn, text);
         PublishResult publishResult = amazonSNS.publish(publishRequest);
         LOGGER.info("Message was sent to topic '{}' with id '{}'", topicArn, publishResult.getMessageId());
