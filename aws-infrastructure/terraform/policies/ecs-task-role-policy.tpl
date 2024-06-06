@@ -34,6 +34,20 @@ ${jsonencode(
       ]
     },
     {
+      "Action": [
+        "translate:TranslateText"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "comprehend:DetectSentiment"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }, 
+    {
       "Effect": "Allow",
       "Action": [
         "sns:Publish"
